@@ -14,9 +14,15 @@ server = http.createServer(function (request, response) {
 			response.write(contents);
 			response.end();
 		});
-	} else {
-		response.end('File not found!');
-	}	
+	} else if(request.url === '/images/fordGT.jpg') {
+		fs.readFile('images/fordGT.jpg', function(errors, contents){
+			response.write(contents);
+			response.end();
+		});
+	}
+	// } else {
+	// 	response.end('File not found!');
+	// }	
 });
 
 server.listen(7070);
