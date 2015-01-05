@@ -62,6 +62,11 @@ server = http.createServer(function (request, response) {
 			response.write(contents);
 			response.end();
 		});
+	} else if (request.url === '/cars/new') {
+		fs.readFile('views/new.html', function(errors, contents) {
+			response.write(contents);
+			response.end();
+		});
 	} else if (request.url === '/styles/style.css') {
 		fs.readFile('styles/style.css', function(errors, contents) {
 			response.write(contents);
