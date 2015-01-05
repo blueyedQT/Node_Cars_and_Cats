@@ -8,7 +8,10 @@ server = http.createServer(function (request, response) {
 	response.writeHead(200, {'Content-type': 'text/html'});
 	console.log('Request', request.url);
 	if(request.url === '/') {
-		response.end('hello world');
+		fs.readFile('views/index.html', 'utf-8', function(errors, contents) {
+			response.write(contents);
+			response.end();
+		});
 	} else if(request.url === '/cars') {
 		fs.readFile('views/cars.html', 'utf-8', function (errors, contents) {
 			response.write(contents);
@@ -19,10 +22,24 @@ server = http.createServer(function (request, response) {
 			response.write(contents);
 			response.end();
 		});
-	}
-	// } else {
-	// 	response.end('File not found!');
-	// }	
+	} else if(request.url === '/images/saleen.jpg') {
+		fs.readFile('images/saleen.jpg', function(errors, contents){
+			response.write(contents);
+			response.end();
+		});
+	} else if(request.url === '/images/viper.jpg') {
+		fs.readFile('images/viper.jpg', function(errors, contents){
+			response.write(contents);
+			response.end();
+		});
+	} else if(request.url === '/images/mini.jpg') {
+		fs.readFile('images/mini.jpg', function(errors, contents){
+			response.write(contents);
+			response.end();
+		});
+	} else {
+		response.end('File not found!');
+	}	
 });
 
 server.listen(7070);
